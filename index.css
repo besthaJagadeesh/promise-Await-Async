@@ -1,0 +1,19 @@
+   
+body{
+    background-color: cyan;
+}
+
+h1{
+    text-align: center;
+    color:crimson;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+#question{
+    color: brown;
+}
+
+pre{
+    color: blue;
+}

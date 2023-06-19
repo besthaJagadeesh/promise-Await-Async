@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS HANDSON 13</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+    <h1>*PROMISE, ASYNC & AWAIT*</h1>
+    <hr>
+
+    <div id="question">Q1.Write one example explaining how you can write a callback function.</div>
+    <div>→
+        <pre>
+            function add(num1, num2, callback) {
+            let output = num1 + num2;
+            callback(output);
+            }
+                  
+            function addition(output) {
+            console.log('The result is: ' + output);
+            }
+                  
+            add(100, 100,  addition);
+        </pre>
+    </div>
+    <hr>
+
+    <div id="question">Q2."Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+        Explain callback hell.<br>
+        Numbers<br>
+        1<br>
+        2<br>
+        3<br>
+        4<br>
+        5<br>
+        6<br>
+        7"</div>
+    <div>→
+<pre>
+    function printNumberfrom1to7(callback) {
+        let number = 1;
+        const printNumber = () => {
+          console.log(number);
+          number++;
+          if (number &lt;= 7) {
+            setTimeout(printNumber, number * 1000);
+          } else {
+            callback();
+          }
+        };
+        setTimeout(printNumber, number * 1000);
+      }
+      printNumberfrom1to7(() => console.log("Done!"));
+</pre>
+    </div>
+
+<hr>
+
+
+<div>Q3."Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+  Numbers<br>
+  1<br>
+  2<br>
+  3<br>
+  4<br>
+  5<br>
+  6<br>
+  7"</div>
+<div>→
+    <pre>
+      function printNumber(num) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            console.log(num);
+            resolve();
+          }, num * 1000);
+        });
+      }
+      
+      async function printNumbers() {
+        for (let i = 1; i &lt;= 7; i++) {
+          await printNumber(i);
+        }
+      }
+      
+      printNumbers();
+      
+    </pre>
+</div>
+<hr>
+
+<div>Q4."Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+    then it should go to reject the state and catch the error and print Promise Rejected "</div>
+<div>→
+    <pre>
+        function checkValue(value) {
+            return new Promise((resolve, reject) => {
+              if (value === 'Altamash') {
+                resolve('Promise Resolved');
+              } else {
+                reject('Promise Rejected');
+              }
+            });
+          }
+          
+          checkValue('Altamash')
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+    </pre>
+</div>
+<hr>
+
+<div>Q5.Create examples to explain callback function</div>
+<div>→
+    <pre>
+        function divide(num1, num2, callback) {
+            let output = num1 / num2;
+            callback(output);
+            }
+                  
+            function division(output) {
+            console.log('The result is: ' + output);
+            }
+                  
+            divide(100, 100,  division);
+    </pre>
+</div>
+<hr>
+
+<div>Q6.Create examples to explain callback hell function</div>
+<div>→ printing numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on using callback hell
+    <pre>
+        setTimeout(() => {
+            console.log('1')
+            setTimeout(() => {
+              console.log('2')
+              setTimeout(() => {
+                console.log('3')
+                setTimeout(() => {
+                  console.log('4')
+                  setTimeout(() => {
+                    console.log('5')                        →CallBack Hell
+                    setTimeout(() => {
+                      console.log('6')
+                      setTimeout(() => {
+                        console.log('7')
+                        
+                      }, 7000);
+                    }, 6000);
+                  }, 5000);
+                }, 4000);
+              }, 3000);
+            }, 2000);
+          }, 1000);
+    </pre>
+</div>
+<hr>
+
+<div>Q7.Create examples to explain promises function</div>
+<div>→
+    <pre>
+        const promiseFunc = new Promise ((resolve,reject) => {
+
+            let marks=75
+            if(marks>74){
+                resolve('You Are In Distinction')
+            }
+            else{
+                reject('You Are In First Class')
+            }
+            
+          })
+          promiseFunc
+         .then((x) => console.log(x))
+         .catch((err) => console.log(err))
+    </pre>
+</div>
+<hr>
+
+<div>Q8.Create examples to explain async await function</div>
+<div>→
+    <pre>
+      function fetchData() {
+        return new Promise(resolve => {
+          setTimeout(() => resolve('Data received!'), 2000);
+        });
+      }
+      
+      async function printData() {
+        console.log("Fetching data...");
+        const data = await fetchData();
+        console.log(data);
+      }
+      
+      printData();
+    </pre>
+</div>
+<hr>
+
+<div>Q9.Create examples to explain promise.all function</div>
+<div>→
+    <pre>
+      const abc = ()=>
+      new Promise((resolve,reject) =>{
+        setTimeout(() => resolve(), 1000);
+      })
+      
+      const xyz = ()=>
+      new Promise((resolve,reject) =>{
+        setTimeout(() => resolve(), 2000);
+      })
+      
+      const final =() => console.log("Both are Executed")
+      
+      Promise.all([abc(),xyz()]).then(() => {
+        final()
+      })
+    </pre>
+</div>
+<hr>
+
+    <script src="./index.js"></script>
+</body>
+</html>
